@@ -1,18 +1,12 @@
 package example.csv;
 
 
-import java.io.BufferedReader;
+import javax.batch.api.AbstractBatchlet;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URI;
-import java.nio.charset.Charset;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import javax.batch.api.AbstractBatchlet;
 
 /*
  * Copyright (c) 2015 kawasima.
@@ -32,7 +26,7 @@ public class KenAllFetcher extends AbstractBatchlet {
     @Override
     public String process() throws Exception {
         Path workDir = Paths.get("csvwork");
-        if (Files.exists(workDir)) {
+        if (!Files.exists(workDir)) {
             Files.createDirectory(workDir);
         }
         

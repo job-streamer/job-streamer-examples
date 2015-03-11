@@ -10,7 +10,11 @@
  */
 package example.csv;
 
-import java.io.BufferedReader;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
+import javax.batch.api.chunk.AbstractItemReader;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.nio.charset.Charset;
@@ -19,16 +23,12 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import javax.batch.api.chunk.AbstractItemReader;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 
 /**
  *
  * @author kawasima
  */
-public class ZipReader extends AbstractItemReader {
+public class PostalReader extends AbstractItemReader {
     private static final Path ZIP_PATH = Paths.get("csvwork", "42nagasa.zip");
     private static final String[] HEADER = {
         "JIS_CD", "OLD_POSTAL_CD", "POSTAL_CD",
@@ -42,7 +42,7 @@ public class ZipReader extends AbstractItemReader {
     @Override
     public void open(Serializable checkpoint) throws Exception {
         ZipFile zipFile = new ZipFile(ZIP_PATH.toFile());
-        ZipEntry csvEntry = zipFile.getEntry("42NAGASA.csv");
+        ZipEntry csvEntry = zipFile.getEntry("42NAGASA.CSV");
         InputStreamReader reader = new InputStreamReader(zipFile.getInputStream(csvEntry), Charset.forName("Windows-31J"));
         parser = CSVFormat.RFC4180
                 .withHeader(HEADER)
