@@ -1,11 +1,10 @@
 package example.csv;
 
-import org.eclipse.persistence.jpa.PersistenceProvider;
-
 import javax.batch.api.chunk.AbstractItemWriter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class PostalLoader extends AbstractItemWriter {
 
     @Override
     public void open(Serializable checkpoint) throws Exception {
-        EntityManagerFactory factory = new PersistenceProvider().createEntityManagerFactory(persistenceUnitName, null);
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(persistenceUnitName);
         em = factory.createEntityManager();
     }
 
