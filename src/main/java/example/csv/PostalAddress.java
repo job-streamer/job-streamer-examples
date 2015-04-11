@@ -1,9 +1,6 @@
 package example.csv;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -12,9 +9,9 @@ import java.io.Serializable;
 @Entity
 public class PostalAddress implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "postal_id_gen")
+    @SequenceGenerator(name="postal_id_gen", sequenceName = "postal_id_seq", allocationSize = 1)
+    private Long postalId;
     private String postalCd;
     private String prefectureKana;
     private String cityKana;
