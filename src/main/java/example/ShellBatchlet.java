@@ -55,7 +55,12 @@ public class ShellBatchlet extends AbstractBatchlet {
             }
         } finally {
             if (process != null) {
-                return Integer.toString(process.exitValue());
+                try {
+                    process.waitFor();
+                    return Integer.toString(process.exitValue());
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException("process is interrupted.");
+                }
             } else {
                 throw new IllegalStateException("process won't start.");
             }
