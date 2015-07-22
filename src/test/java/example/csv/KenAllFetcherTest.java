@@ -1,14 +1,22 @@
 package example.csv;
 
+import org.jboss.weld.environment.se.Weld;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import javax.enterprise.inject.spi.CDI;
 
 /**
  * @author kawasima
  */
 public class KenAllFetcherTest {
+    @BeforeClass
+    public static void initContainer() {
+        new Weld().initialize();
+    }
     @Test
     public void test() throws Exception {
-        KenAllFetcher kenAllFetcher = new KenAllFetcher();
+        KenAllFetcher kenAllFetcher = CDI.current().select(KenAllFetcher.class).get();
         kenAllFetcher.process();
     }
 }
