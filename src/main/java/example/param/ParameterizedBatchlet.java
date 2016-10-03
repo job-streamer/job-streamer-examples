@@ -16,7 +16,7 @@ import java.util.Properties;
 @Named
 @Dependent
 public class ParameterizedBatchlet extends AbstractBatchlet{
-    private static final Logger LOG = LoggerFactory.getLogger("job-streamer");
+    private static final Logger LOG = LoggerFactory.getLogger(ParameterizedBatchlet.class);
 
     @Any
     @Inject
