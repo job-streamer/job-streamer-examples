@@ -1,15 +1,17 @@
 package example.csv;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  * @author kawasima
  */
 public class PostalLoaderTest {
     @Test
+    @Ignore("oracle jdbc driver is not exist in maven central")
     public void test() throws Exception {
         PostalLoader postalLoader = new PostalLoader();
         postalLoader.setPersistenceUnitName("test");

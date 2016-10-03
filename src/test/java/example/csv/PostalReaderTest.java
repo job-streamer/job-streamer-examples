@@ -1,5 +1,6 @@
 package example.csv;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -7,6 +8,7 @@ import org.junit.Test;
  */
 public class PostalReaderTest {
     @Test
+    @Ignore("oracle jdbc driver is not exist in maven central")
     public void test() throws Exception {
         PostalReader reader = new PostalReader();
         try {
