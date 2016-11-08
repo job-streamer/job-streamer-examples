@@ -20,4 +20,9 @@ public class StoppableFiveMinutesBatchlet extends AbstractStoppableBatchlet {
             LOG.info(i + "minutes.");
         }
     }
+
+    @Override
+    public void whenStop() {
+        LOG.info("stopped.");
+    }
 }

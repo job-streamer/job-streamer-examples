@@ -15,6 +15,7 @@ public abstract class AbstractStoppableBatchlet extends AbstractBatchlet{
     @Override
     public void stop() throws Exception{
         running = false;
+        super.stop();
     }
 
     @Override
@@ -27,6 +28,7 @@ public abstract class AbstractStoppableBatchlet extends AbstractBatchlet{
             try {
                 containerThread.sleep(THREAD_SLEEP);
             } catch (InterruptedException e){
+                whenStop();
                 return BatchStatus.STOPPED.toString();
             }
         }
@@ -34,6 +36,8 @@ public abstract class AbstractStoppableBatchlet extends AbstractBatchlet{
         return BatchStatus.COMPLETED.toString();
     }
     
+    public abstract void whenStop();
+
     public abstract void containerProcess() throws Exception;
 
     public class ContainerRunner implements Runnable{
