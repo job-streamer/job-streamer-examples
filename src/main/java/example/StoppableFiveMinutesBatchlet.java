@@ -1,6 +1,7 @@
 package example;
 
 import javax.batch.api.AbstractBatchlet;
+import javax.batch.runtime.BatchStatus;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,15 +21,20 @@ public class StoppableFiveMinutesBatchlet extends AbstractBatchlet {
         running = true;
         int threadSleapCount = 0;
         int minutes = 0;
-        while (running) {
+        while (true) {
+            if(!running){
+                return BatchStatus.STOPPED.toString();
+            }
             Thread.sleep(THREAD_SLEEP);
             threadSleapCount++;
             if(threadSleapCount % MINUTES_TO_MS == 0){
                 minutes++;
                 LOG.info("It takes {} minutes", minutes);
             }
+            if(minutes == 5){
+                return BatchStatus.COMPLETED.toString();
+            }
         }
-        return null;
     }
 
     @Override
