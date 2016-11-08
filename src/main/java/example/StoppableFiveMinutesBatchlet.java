@@ -21,7 +21,7 @@ public class StoppableFiveMinutesBatchlet extends AbstractBatchlet {
         running = true;
         int threadSleapCount = 0;
         int minutes = 0;
-        while (true) {
+        while (minutes != 5) {
             if(!running){
                 return BatchStatus.STOPPED.toString();
             }
@@ -31,14 +31,13 @@ public class StoppableFiveMinutesBatchlet extends AbstractBatchlet {
                 minutes++;
                 LOG.info("It takes {} minutes", minutes);
             }
-            if(minutes == 5){
-                return BatchStatus.COMPLETED.toString();
-            }
         }
+        return BatchStatus.COMPLETED.toString();
     }
 
     @Override
     public void stop() throws Exception {
+        LOG.info("stop the batchlet");
         running = false;
     }
 }
