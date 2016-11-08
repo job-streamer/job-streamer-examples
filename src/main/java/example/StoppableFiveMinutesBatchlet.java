@@ -27,7 +27,7 @@ public class StoppableFiveMinutesBatchlet extends AbstractBatchlet {
             }
             Thread.sleep(THREAD_SLEEP);
             threadSleapCount++;
-            if(threadSleapCount % MINUTES_TO_MS == 0){
+            if((threadSleapCount * THREAD_SLEEP) % MINUTES_TO_MS == 0){
                 minutes++;
                 LOG.info("It takes {} minutes", minutes);
             }
