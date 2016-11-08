@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * @author kawasima
  */
 public class StoppableFiveMinutesBatchlet extends AbstractStoppableBatchlet {
-    private static final Logger LOG = LoggerFactory.getLogger("job-streamer");
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractStoppableBatchlet.class);
 
     @Override
     public void containerProcess() throws Exception{
