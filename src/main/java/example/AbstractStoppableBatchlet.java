@@ -10,21 +10,21 @@ import javax.batch.runtime.BatchStatus;
  */
 public abstract class AbstractStoppableBatchlet extends AbstractBatchlet{
     private static final int THREAD_SLEEP = 1000;
-    private volatile boolean running = false;
+    private volatile Thread containerThread;
 
     @Override
     public void stop() throws Exception{
-        running = false;
         super.stop();
+        containerThread = null;
     }
 
     @Override
     public String process() throws Exception{
-        running = true;
         ContainerRunner containerRunner = new ContainerRunner();
-        Thread containerThread = new Thread(containerRunner);
+        containerThread = new Thread(containerRunner);
         containerThread.start();
-        while (running) {
+        Thread thisThread = Thread.currentThread();
+        while (containerThread == thisThread) {
             try {
                 containerThread.sleep(THREAD_SLEEP);
             } catch (InterruptedException e){
@@ -32,7 +32,6 @@ public abstract class AbstractStoppableBatchlet extends AbstractBatchlet{
                 return BatchStatus.STOPPED.toString();
             }
         }
-        running = false;
         return BatchStatus.COMPLETED.toString();
     }
     
