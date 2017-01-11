@@ -35,6 +35,8 @@
                 <artifactId>job-streamer-maven-plugin</artifactId>
                 <version>0.1.0</version>
                 <configuration>
+                    <username>admin</username>
+                    <password>password123</password>
                     <controlBusHost>localhost</controlBusHost>
                     <controlBusPort>45102</controlBusPort>
                     <name>job-streamer-examples</name>
