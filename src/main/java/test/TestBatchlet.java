@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import javax.batch.api.AbstractBatchlet;
 import javax.batch.runtime.context.JobContext;
+import javax.batch.runtime.context.StepContext;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Any;
 import javax.inject.Inject;
@@ -20,11 +21,15 @@ public class TestBatchlet extends AbstractBatchlet{
     @Any
     @Inject
     JobContext jobContext;
+    
+    @Any
+    @Inject
+    StepContext stepContext;
 
     @Override
     public String process() {
-        Properties jobProperties = jobContext.getProperties();
-        LOG.info("jobProperties=" + jobProperties);
-        return jobProperties.getProperty("status");
+        Properties stepProperties = stepContext.getProperties();
+        LOG.info(stepContext.getStepName() + "is executing");
+        return stepProperties.getProperty("status");
     }
 }
