@@ -8,6 +8,5 @@ public class TestItemWriter extends AbstractItemWriter {
     
     @Override
     public void writeItems(List<Object> items){
-        ;
     }
 }
