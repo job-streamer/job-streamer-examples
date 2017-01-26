@@ -41,6 +41,11 @@
                     <description>This is examples.</description>
                     <username>admin</username>
                     <password>password123</password>
+                    <!-- Remove this comment out  -->
+                    <!--  
+                    <username>${username}</username>
+                    <password>${password}</password> 
+                    -->
                 </configuration>
             </plugin>
             <plugin>
