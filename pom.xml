@@ -33,12 +33,20 @@
             <plugin>
                 <groupId>net.unit8.maven.plugins</groupId>
                 <artifactId>job-streamer-maven-plugin</artifactId>
-                <version>0.1.0</version>
+                <version>0.2.0</version>
                 <configuration>
                     <controlBusHost>localhost</controlBusHost>
                     <controlBusPort>45102</controlBusPort>
                     <name>job-streamer-examples</name>
                     <description>This is examples.</description>
+                    <username>admin</username>
+                    <password>password123</password>
+                    <!-- Remove this comment out if you want to set from command line-->
+                    <!-- Then deploy command -> mvn job-streamer:deploy -Dusername=admin -Dpassword=password123 -->
+                    <!--  
+                    <username>${username}</username>
+                    <password>${password}</password> 
+                    -->
                 </configuration>
             </plugin>
             <plugin>
